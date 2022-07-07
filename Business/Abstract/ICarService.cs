@@ -13,6 +13,8 @@ namespace Business.Abstract
         IResult DeleteCarById(int id);
         IResult Update(Car car);
 
+        IResult AddTransactionalTest(Car car);
+
         IDataResult<List<Car>> GetAll();
         IDataResult<List<Car>> GetCarByBrandId(int id);
         IDataResult<List<Car>> GetCarsByDailyPrice(decimal min, decimal max);
