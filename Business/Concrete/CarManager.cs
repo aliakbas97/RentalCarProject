@@ -58,7 +58,7 @@ namespace Business.Concrete
         }
 
 
-        [CacheAspect] // key ,value
+        //[CacheAspect] // key ,value
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>> ( _carDal.GetAll(),Messages.CarsListed);

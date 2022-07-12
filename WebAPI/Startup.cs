@@ -42,7 +42,7 @@ namespace WebAPI
             //services.AddSingleton<ICarDal, EfCarDal>();
             //services.AddSingleton<IBrandService, BrandManager>();
             //services.AddSingleton<IBrandDal, EfBrandDal>();
-
+            services.AddCors();
             
 
             var _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -72,6 +72,7 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
