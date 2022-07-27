@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Abstract;
 
@@ -24,6 +25,9 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
+
+           
+
             var result = _carService.GetAll();
 
             if(result.Success)
@@ -106,5 +110,43 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+     [HttpGet("getcarsdetails")]
+     public IActionResult GetCarsDetails()
+        {
+            var result = _carService.GetAllCarDetails();
+            if(result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+        [HttpGet("getcarsbycolorid")]
+        public IActionResult GetCarsByColorId(int id)
+        {
+            var result = _carService.GetCarByColorId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
+        [HttpGet("getcarsbybrandidandcolorid")]
+        public IActionResult GetCarsByBrandIdAndColorId(int brandId, int colorId)
+        {
+            var result = _carService.GetCarByBrandIdAndColorId(brandId, colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
     }
+
 }

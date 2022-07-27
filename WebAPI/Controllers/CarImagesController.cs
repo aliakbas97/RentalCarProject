@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _carImageService.GetAll();
-            if(!result.Success)
+            if(result.Success)
             {
                 return Ok(result);
             }
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         public IActionResult GetCarImagesByCarId(int id)
         {
             var result = _carImageService.GetCarImagesByCarId(id);
-            if (!result.Success)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         public IActionResult Update([FromForm(Name ="Images")] IFormFile formFile, [FromForm]  CarImage carImage)
         {
             var result = _carImageService.Update(formFile,carImage);
-            if (!result.Success)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -66,7 +66,17 @@ namespace WebAPI.Controllers
         public IActionResult Delete(CarImage carImage)
         {
             var result = _carImageService.Delete( carImage);
-            if (!result.Success)
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("deletecarimagesbyimageid")]
+        public IActionResult Delete(int id)
+        {
+            var result = _carImageService.DeleteImageByImageId(id);
+            if (result.Success)
             {
                 return Ok(result);
             }
